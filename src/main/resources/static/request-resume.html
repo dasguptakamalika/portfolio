@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Request Resume | Kamalika</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9fafc; padding: 40px; }
+    .form-container {
+        max-width: 500px; margin: auto; background: #fff;
+        padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input, textarea {
+        width: 100%; padding: 10px; margin-top: 6px;
+        border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+        margin-top: 15px; width: 100%; padding: 12px;
+        background: #0073e6; color: white; border: none;
+        border-radius: 6px; cursor: pointer; font-size: 16px;
+    }
+    button:hover { background: #005bb5; }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Request My Resume</h2>
+  <!-- ✅ Formspree integration -->
+  <form action="https://formspree.io/f/xnnberen" method="POST">
+    <label>Name</label>
+    <input type="text" name="name" required />
+
+    <label>Email</label>
+    <input type="email" name="_replyto" required />
+
+    <label>Message</label>
+    <textarea name="message" rows="5" required></textarea>
+
+    <button type="submit">Send Request</button>
+  </form>
+</div>
+</body>
+</html>

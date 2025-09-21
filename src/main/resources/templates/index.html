@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Portfolio | Kamalika Dasgupta</title>
+    <style>
+        body {
+          margin: 0;
+          font-family: 'Segoe UI', sans-serif;
+          color: #333;
+          background: linear-gradient(135deg, #f9fafc, #dfe9f3);
+        }
+        header {
+          background: linear-gradient(135deg, #0073e6, #005bb5);
+          color: #fff;
+          text-align: center;
+          padding: 60px 20px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        header h1 { margin: 0; font-size: 2.8em; }
+        header h2 { margin: 10px 0 0; font-weight: normal; }
+        header p  { font-size: 1.2em; opacity: 0.9; }
+
+        .section { max-width: 1000px; margin: 50px auto; padding: 20px; text-align: center; }
+        .about p { font-size: 1.1em; line-height: 1.6; max-width: 700px; margin: auto; }
+
+        .skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
+        .skill {
+          padding: 10px 18px; background: #fff; border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.1); font-weight: 500;
+        }
+
+        .cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
+        .card {
+          width: 280px; padding: 20px; background: #fff; border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform .3s ease;
+        }
+        .card:hover { transform: translateY(-6px); }
+        .card h3 { margin-top: 0; }
+        .card a  { color: #0073e6; text-decoration: none; font-weight: 600; }
+
+        footer {
+          margin-top: 50px; text-align: center; padding: 20px; background: #222; color: #fff;
+        }
+        footer a { color: #66aaff; text-decoration: none; margin: 0 10px; }
+        footer a:hover { text-decoration: underline; }
+
+        /* --- Whiskey Popup --- */
+        .dog-popup {
+          display: none;           /* shown via JS */
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,0.6);   /* dark overlay initially */
+          z-index: 1000;
+        }
+
+        .dog-popup-content {
+          position: fixed;
+          left: 50%;
+          top: 50%;
+          width: 340px;
+          max-width: 90vw;
+          transform: translate(-50%, -50%) scale(0.95);
+          opacity: 0;
+          background: #fff;
+          padding: 18px;
+          border-radius: 12px;
+          text-align: center;
+          box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+          transition:
+            opacity 600ms ease,
+            transform 600ms ease,
+            left 600ms ease,
+            top 600ms ease,
+            right 600ms ease,
+            bottom 600ms ease;
+        }
+
+        /* 1) Fade in at center */
+        .dog-popup-content.show {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* 2) Corner dock */
+        .dog-popup-content.corner {
+          left: auto; top: auto;
+          right: 20px; bottom: 20px;
+          transform: translate(0, 0) scale(0.85);
+        }
+
+        .dog-inner img {
+          max-width: 220px;
+          border-radius: 15px;
+          margin-bottom: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          display: block;
+          margin-left: auto; margin-right: auto;
+        }
+        .dog-inner p {
+          font-style: italic; font-size: 16px; color: #222; margin: 0;
+        }
+
+        /* 3) Bounce animation */
+        @keyframes dog-bounce {
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(-10px); }
+        }
+        .dog-inner.bounce {
+          animation: dog-bounce 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kamalika Dasgupta</h1>
+    <h2>Welcome to My Portfolio</h2>
+    <p>Java Developer | Spring Boot | PostgreSQL | Building Cool Stuff ✨</p>
+</header>
+
+<section class="section about">
+    <h2>About Me</h2>
+    <p>
+        I am a Java Developer with 3+ years of experience in building scalable applications using
+        Spring Boot, PostgreSQL, and modern software practices.
+        I love solving problems, writing clean code, enjoy good coffee brew, old school music and adding a touch of fun — like my dog Whiskey 🐶 who keeps me company while I code!
+    </p>
+</section>
+
+<section class="section">
+    <h2>Skills</h2>
+    <div class="skills">
+        <div class="skill">Java</div>
+        <div class="skill">Spring Boot</div>
+        <div class="skill">PostgreSQL</div>
+        <div class="skill">REST APIs</div>
+        <div class="skill">Git & GitHub</div>
+        <div class="skill">Docker</div>
+        <div class="skill">Thymeleaf</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Projects & Blog</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>📝 Blogs</h3>
+            <p>Read my thoughts on coding, backend development, and software design.</p>
+            <a href="/posts?type=blog">Read Blogs →</a>
+        </div>
+        <div class="card">
+            <h3>📸 Photography</h3>
+            <p>A collection of my favorite clicks, captured in moments of joy and calm.</p>
+            <a href="/posts?type=photo">View Photography →</a>
+        </div>
+        <div class="card">
+            <h3>👥 User Management</h3>
+            <p>Demo of CRUD operations for user data — part of my backend showcase.</p>
+            <a href="/users-page">Manage Users →</a>
+        </div>
+        <div class="card">
+            <h3>✍️ Write a Blog</h3>
+            <p>Create a new blog post and share your thoughts with the world.</p>
+            <a href="/posts/add">Start Writing →</a>
+        </div>
+    </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>Find me here:</p>
+
+    <a href="/request-resume.html">📄 Request Resume</a>
+
+
+    <a href="https://github.com/dasguptakamalika" target="_blank">💻 GitHub</a> |
+    <a href="https://www.linkedin.com/in/kamalika-dasgupta-5364b7252" target="_blank">🔗 LinkedIn</a> |
+    <a href="https://www.instagram.com/kamalika_dasgupta" target="_blank">📸 Instagram</a>
+
+    <p style="margin-top:10px; font-style:italic">
+        "Hire my hooman so she can buy me more treatos 🦴"
+    </p>
+</footer>
+
+
+
+<!-- Whiskey Popup -->
+<div id="dogPopup" class="dog-popup">
+    <div id="dogContent" class="dog-popup-content">
+        <div id="dogInner" class="dog-inner">
+            <img src="/Dog3.jpg" alt="Whiskey the Lab" />
+            <p>"Hi, I’m <b>Whiskey</b> 🐾 — an English Lab. Hire my hooman so she can buy me more treats!"</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+      const popup   = document.getElementById('dogPopup');
+      const content = document.getElementById('dogContent');
+      const inner   = document.getElementById('dogInner');
+
+      popup.style.display = 'block';
+
+      // Step 1: Fade in center
+      requestAnimationFrame(() => {
+        content.classList.add('show');
+      });
+
+      // Step 2: After 5s → slide to corner
+      setTimeout(() => {
+        content.classList.add('corner');
+        popup.style.background = 'transparent';
+
+        // remove overlay so links are clickable
+        popup.style.pointerEvents = "none";
+        content.style.pointerEvents = "auto";
+
+        // Step 3: bounce after move
+        setTimeout(() => {
+          inner.classList.add('bounce');
+        }, 650);
+      }, 5000);
+    };
+</script>
+</body>
+</html>

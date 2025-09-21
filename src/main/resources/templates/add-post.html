@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Post</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #f9fafc, #dfe9f3); margin: 0; padding: 40px; }
+        h1 { text-align: center; }
+        form { max-width: 600px; margin: auto; background: #fff; padding: 20px;
+               border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        input, textarea, select {
+          width: 100%; padding: 10px; margin: 10px 0;
+          border: 1px solid #ccc; border-radius: 6px;
+        }
+        button {
+          padding: 10px 20px; background: #0073e6; color: white;
+          border: none; border-radius: 6px; cursor: pointer;
+        }
+        button:hover { background: #005bb5; }
+    </style>
+</head>
+<body>
+<h1>✍️ Write a Blog</h1>
+
+<form action="/posts" method="post" th:object="${post}">
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required>
+
+    <label>Content:</label>
+    <textarea th:field="*{content}" rows="8" required></textarea>
+
+    <label>Type:</label>
+    <select th:field="*{type}">
+        <option value="blog">Blog</option>
+        <option value="photo">Photography</option>
+    </select>
+
+    <label>Image URL (only for photography posts):</label>
+    <input type="text" th:field="*{imageUrl}">
+
+    <button type="submit">Publish</button>
+</form>
+</body>
+</html>
