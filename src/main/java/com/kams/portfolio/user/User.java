@@ -1,7 +1,7 @@
-package com.kams.portfolio.user;
+ package com.kams.portfolio.user;
 
 import jakarta.persistence.*;
-
+ 
 @Entity
 @Table(name = "users")   // matches your table
 public class User {
