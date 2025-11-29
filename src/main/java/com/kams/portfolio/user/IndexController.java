@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @GetMapping("/")
-    public String home() {
+    public String home() { 
         return "index";  // looks for index.html inside templates/
     }
 }
