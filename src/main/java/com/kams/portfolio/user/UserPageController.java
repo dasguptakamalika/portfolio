@@ -9,7 +9,7 @@ public class UserPageController {
     @GetMapping("/users-page")
     public String showUsersPage() {
         return "users"; // loads users.html from templates/
-    }
+    } 
 
     @GetMapping("/add-user")
     public String showAddUserForm() {
